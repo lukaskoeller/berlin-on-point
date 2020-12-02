@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Lukas Koeller -- Founder, Developer -- https://twitter.com/KllrLukas
+
+# THANKS
+
+    Bulma and Pupeteer library
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    JavaScript

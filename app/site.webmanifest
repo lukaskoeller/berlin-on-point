@@ -1,0 +1,12 @@
+{
+  "short_name": "berlinonpoint",
+  "name": "berlinonpoint",
+  "icons": [{
+    "src": "berlinonpoint-app-icon.png",
+    "type": "image/png",
+    "sizes": "1024x1024"
+  }],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#fff",
+  "theme_color": "#000"
+}
