@@ -1,7 +1,7 @@
 # berlin-on-point
 Be notified about available appointment at Berlins authorities.
 
-![berlin-on-point](./berlinonpoint-ogimage.png)
+![berlin-on-point](./app/berlinonpoint-ogimage.png)
 
 Choose from services like:
 1. Personalausweis beantragen
