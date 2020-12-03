@@ -12,3 +12,8 @@ Choose from services like:
 and more.
 
 You can subscribe to the service of your choice. As soon as there are free appointments available, berlinonpoint will inform you via mail or notification.
+
+## Tech Stack
+* Designed with [Figma - berlinonpoint](https://www.figma.com/file/KgE6b0PhVKQlVhvhNf72AI/berlinonpoint).
+* [Bulma](https://bulma.io/) as CSS framework.
+* Chromium Bot built with [Puppeteer](https://github.com/puppeteer/puppeteer).
