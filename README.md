@@ -1,6 +1,6 @@
 ![berlin-on-point](./app/berlinonpoint-ogimage.png)
 # berlin-on-point
-Be notified about available appointment at Berlins authorities.
+Be notified about available appointments at Berlins authorities.
 
 
 Choose from services like:
