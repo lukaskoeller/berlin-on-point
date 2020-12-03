@@ -9,6 +9,6 @@ Choose from services like:
 3. Anmeldung einer Wohnung
 4. Schwerbehindertenausweis
 5. Führungszeugnis
-6. and more.
+and more.
 
 You can subscribe to the service of your choice. As soon as there are free appointments available, berlinonpoint will inform you via mail or notification.
