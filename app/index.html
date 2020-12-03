@@ -21,13 +21,67 @@
   <link rel="stylesheet" href="css/main.css">
 
   <meta name="theme-color" content="#fafafa">
+  <style>
+    body {
+      max-width: 640px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>berlin on point</h1>
-  <a class="button is-primary">
-    Button
-  </a>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-flex is-justify-content-center">
+        <figure class="image is-96x96">
+          <img src="./berlinonpoint-logo.svg">
+        </figure>
+      </div>
+      <div class="container">
+        <h1 class="title has-text-centered">
+          berlin on point
+        </h1>
+        <h2 class="subtitle has-text-centered">
+          Be notified about available appointments at Berlins authorities.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-size-3">
+        1. Choose a service
+      </h2>
+      <div class="field">
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <select>
+              <option>Select service</option>
+              <option>Wohnungsanmeldung</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-size-3">
+        2. Subscribe to service
+      </h2>
+      <div class="field is-grouped is-expanded">
+        <p class="control is-expanded">
+          <a class="button is-primary is-fullwidth">
+            Email
+          </a>
+        </p>
+        <p class="control is-expanded">
+          <a class="button is-secondary is-fullwidth">
+            Notification
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
 </body>
 
 </html>
