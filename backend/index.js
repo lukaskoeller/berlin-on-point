@@ -2,6 +2,7 @@ import cors from 'cors';
 import multer from 'multer';
 import services from './services/index.js';
 import express from 'express';
+import { getFreeSlots } from './scraper/index.js';
 
 const app = express();
 const port = 3000;
@@ -16,9 +17,12 @@ app.get('/services', (req, res) => {
     res.json(services);
 });
 
-app.post('/getFreeSlots', (req, res) => {
+app.post('/getFreeSlots', async (req, res) => {
     console.log("req.body:service", req.body);
-    res.sendStatus(200);
+    const { service } = req.body;
+    const freeSlots = await getFreeSlots(service);
+    console.log("freeSlots", freeSlots);
+    res.json(freeSlots);
 });
 
 app.post('/subscribe', upload.none(), (req, res) => {
