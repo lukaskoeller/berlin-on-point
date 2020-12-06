@@ -47,41 +47,46 @@
       </div>
     </div>
   </section>
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-size-3">
-        1. Choose a service
-      </h2>
-      <div class="field">
-        <div class="control is-expanded">
-          <div class="select is-fullwidth">
-            <select class="services-select">
-              <option>Select service</option>
-            </select>
+  <form>
+    <section class="section">
+      <div class="container">
+        <h2 class="title is-size-3">
+          1. Choose a service
+        </h2>
+        <div class="field">
+          <div class="control is-expanded">
+            <div class="select is-fullwidth">
+              <select name="service" class="services-select">
+                <option>Select service</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <h2 class="title is-size-3">
+          2. Subscribe to service
+        </h2>
+        <div class="field is-grouped">
+          <div class="control is-expanded">
+            <label class="label">Via Notification</label>
+            <p class="control">
+              <a class="button is-primary is-fullwidth">
+                Notification
+              </a>
+            </p>
+          </div>
+          <div class="control is-expanded">
+            <label class="label">Via Email</label>
+            <input name="email" class="input" type="email" placeholder="e.g. myaddress@gmail.com">
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <button class="button is-link submitForm" onclick="sendForm(event)">Submit</button>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-size-3">
-        2. Subscribe to service
-      </h2>
-      <div class="field is-grouped is-expanded">
-        <p class="control is-expanded">
-          <a class="button is-primary is-fullwidth">
-            Email
-          </a>
-        </p>
-        <p class="control is-expanded">
-          <a class="button is-secondary is-fullwidth">
-            Notification
-          </a>
-        </p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </form>
   <script>
     (async () => {
       const services = await fetch('http://localhost:3000/services', { mode: 'cors' })
@@ -100,6 +105,16 @@
         servicesSelect.appendChild(option);
       });
     })();
+
+    const sendForm = (event) => {
+      event.preventDefault();
+      const form = document.querySelector('form');;
+      const formData = new FormData(form);
+      fetch('http://localhost:3000/subscribe', {
+        method: 'POST',
+        body: formData,
+      });
+    };
   </script>
 </body>
 
