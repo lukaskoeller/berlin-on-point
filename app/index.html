@@ -31,6 +31,20 @@
     tr > td:first-of-type {
       width: 70%;
     }
+
+    /* @keyframes loader {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    } */
+
+    .loader-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .loader-container > span {
+      margin-left: 16px;
+    }
   </style>
 </head>
 
@@ -126,9 +140,25 @@
       return `${year}-${month}-${day}`;
     };
 
+    const createLoader = (msg) => {
+      const div = document.createElement('div');
+      div.className = 'loader-container';
+      const loader = document.createElement('div');
+      loader.className = 'loader';
+      div.appendChild(loader);
+      const span = document.createElement('span');
+      span.innerHTML = msg;
+      div.appendChild(span);
+
+      return div;
+    };
+
     const getFreeSlots = async () => {
       const service = document.querySelector('select').value;
       const table = document.querySelector('.table');
+
+      table.innerHTML = '';
+      table.appendChild(createLoader('Looking for available appointments...'));
       
       const freeSlots = await fetch('http://localhost:3000/getFreeSlots', {
         method: 'POST',
@@ -140,6 +170,8 @@
       .then(response => response.json())
       .then(freeSlots => freeSlots)
       .catch(error => console.error(error));
+
+      console.log('freeSlots', freeSlots);
 
       if (typeof freeSlots !== 'object') {
         table.innerHTML = freeSlots;
@@ -163,6 +195,7 @@
         tr.appendChild(tdDate);
         tr.appendChild(tdLink);
       });
+      document.querySelector('.loader-container').remove();
       table.appendChild(tbody);
     };
 
