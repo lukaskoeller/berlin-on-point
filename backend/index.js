@@ -1,11 +1,11 @@
-const cors = require('cors');
-const multer  = require('multer');
-const upload = multer({ dest: 'uploads/' });
-const services = require('./services');
+import cors from 'cors';
+import multer from 'multer';
+import services from './services/index.js';
+import express from 'express';
 
-const express = require('express');
 const app = express();
 const port = 3000;
+const upload = multer({ dest: 'uploads/' });
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }))
@@ -16,8 +16,14 @@ app.get('/services', (req, res) => {
     res.json(services);
 });
 
+app.post('/getFreeSlots', (req, res) => {
+    console.log("req.body:service", req.body);
+    res.sendStatus(200);
+});
+
 app.post('/subscribe', upload.none(), (req, res) => {
-    console.log("req.body", req.body);
+    console.log("req.body:form", req.body);
+    res.sendStatus(200);
 });
 
 app.listen(port, () => {

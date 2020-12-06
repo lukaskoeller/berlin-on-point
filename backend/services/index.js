@@ -25,4 +25,4 @@ const services = {
     },
   };
 
-  module.exports = services;
+  export default services;
