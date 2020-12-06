@@ -24,8 +24,12 @@
       max-width: 640px;
     }
 
-    thead:only-child {
+    thead:only-child, thead {
       display: none;
+    }
+
+    tr > td:first-of-type {
+      width: 70%;
     }
   </style>
 </head>
@@ -63,7 +67,7 @@
             </div>
           </div>
         </div>
-        <table class="table is-fullwidth">
+        <table class="table is-fullwidth is-striped">
           <thead>
             <tr>
               <th>Date</th>
@@ -113,8 +117,18 @@
       });
     })();
 
+    const formatDate = (ISOString) => {
+      const date = new Date(ISOString);
+      const year = date.getFullYear();
+      const month = date.getMonth();
+      const day = date.getDate();
+
+      return `${year}-${month}-${day}`;
+    };
+
     const getFreeSlots = async () => {
       const service = document.querySelector('select').value;
+      const table = document.querySelector('.table');
       
       const freeSlots = await fetch('http://localhost:3000/getFreeSlots', {
         method: 'POST',
@@ -127,22 +141,29 @@
       .then(freeSlots => freeSlots)
       .catch(error => console.error(error));
 
-      if (!(typeof freeSlots === 'object')) {
-        document.querySelector('.table').innerHTML = freeSlots;
+      if (typeof freeSlots !== 'object') {
+        table.innerHTML = freeSlots;
         return;
       }
       
+      console.log("create table");
       const tbody = document.createElement('tbody')
       freeSlots.forEach(slot => {
+        console.log(slot);
         const tr = tbody.appendChild(document.createElement('tr'));
         const tdDate = document.createElement('td');
-        tdDate.innerHTML = slot.date;
+        tdDate.innerHTML = formatDate(slot.date);
         const tdLink = document.createElement('td');
-        tdLink.innerHTML = slot.link;
+        const btn = document.createElement('a');
+        btn.className = 'button is-secondary is-fullwidth';
+        btn.href = slot.link;
+        btn.innerHTML = 'Book';
+        tdLink.appendChild(btn);
         
         tr.appendChild(tdDate);
         tr.appendChild(tdLink);
       });
+      table.appendChild(tbody);
     };
 
     const sendForm = (event) => {
