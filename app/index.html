@@ -23,6 +23,10 @@
       margin: 0 auto;
       max-width: 640px;
     }
+
+    thead:only-child {
+      display: none;
+    }
   </style>
 </head>
 
@@ -59,6 +63,14 @@
             </div>
           </div>
         </div>
+        <table class="table is-fullwidth">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Book</th>
+            </tr>
+          </thead>
+        </table>
         <h2 class="title is-size-3">
           2. Subscribe to service
         </h2>
@@ -103,15 +115,35 @@
       });
     })();
 
-    const getFreeSlots = () => {
+    const getFreeSlots = async () => {
       const service = document.querySelector('select').value;
-      console.log('service', service);
-      fetch('http://localhost:3000/getFreeSlots', {
+      
+      const freeSlots = await fetch('http://localhost:3000/getFreeSlots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           service,
         }),
+      })
+      .then(response => response.json())
+      .then(freeSlots => freeSlots)
+      .catch(error => console.error(error));
+
+      if (!(typeof freeSlots === 'object')) {
+        document.querySelector('.table').innerHTML = freeSlots;
+        return;
+      }
+      
+      const tbody = document.createElement('tbody')
+      freeSlots.forEach(slot => {
+        const tr = tbody.appendChild(document.createElement('tr'));
+        const tdDate = document.createElement('td');
+        tdDate.innerHTML = slot.date;
+        const tdLink = document.createElement('td');
+        tdLink.innerHTML = slot.link;
+        
+        tr.appendChild(tdDate);
+        tr.appendChild(tdLink);
       });
     };
 
