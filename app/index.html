@@ -55,9 +55,8 @@
       <div class="field">
         <div class="control is-expanded">
           <div class="select is-fullwidth">
-            <select>
+            <select class="services-select">
               <option>Select service</option>
-              <option>Wohnungsanmeldung</option>
             </select>
           </div>
         </div>
@@ -83,6 +82,25 @@
       </div>
     </div>
   </section>
+  <script>
+    (async () => {
+      const services = await fetch('http://localhost:3000/services', { mode: 'cors' })
+        .then(response => response.json())
+        .then(data => Object.values(data))
+        .catch(error => console.error(error));
+
+      console.log("services", services);
+
+      const servicesSelect = document.querySelector('.services-select');
+      services.forEach(service => {
+        const option = document.createElement('option');
+        option.text = service.name;
+        option.value = service.no;
+
+        servicesSelect.appendChild(option);
+      });
+    })();
+  </script>
 </body>
 
 </html>
