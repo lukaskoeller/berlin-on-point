@@ -1,5 +1,5 @@
 /* eslint-disable no-await-in-loop */
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 
 const baseURL = 'https://service.berlin.de';
 const servicePath = 'dienstleistung';
@@ -64,8 +64,10 @@ export const getFreeSlots = async (service) => {
     }
     await page.waitForSelector('.calendar-table');
     // eslint-disable-next-line no-console
-    console.log(index, ': ', availability);
   }
 
-  // await browser.close();
+  await browser.close();
+  return availability.length
+  ? availability
+  : 'No available appointments at the moment';
 };
