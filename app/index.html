@@ -17,9 +17,6 @@
   <link rel="apple-touch-icon" href="berlinonpoint-app-icon.png">
   <!-- Place favicon.ico in the root directory -->
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-
   <meta name="theme-color" content="#fafafa">
   <style>
     body {
@@ -56,7 +53,7 @@
         <div class="field">
           <div class="control is-expanded">
             <div class="select is-fullwidth">
-              <select name="service" class="services-select">
+              <select name="service" onchange="getFreeSlots()" class="services-select">
                 <option>Select service</option>
               </select>
             </div>
@@ -105,6 +102,18 @@
         servicesSelect.appendChild(option);
       });
     })();
+
+    const getFreeSlots = () => {
+      const service = document.querySelector('select').value;
+      console.log('service', service);
+      fetch('http://localhost:3000/getFreeSlots', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service,
+        }),
+      });
+    };
 
     const sendForm = (event) => {
       event.preventDefault();
