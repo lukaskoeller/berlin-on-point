@@ -36,12 +36,12 @@ app.get('/getFreeSlots', (_req, res) => {
 });
 
 app.post('/subscribe', upload.none(), (req, res) => {
-    console.log("req.body:form", req.body);
-    res.sendStatus(200);
+  console.log("req.body:form", req.body);
+  res.sendStatus(200);
 });
 
 app.listen(port, () => {
-    console.log(`berlin on point listening at http://localhost:${port}`);
+  console.log(`berlin on point listening at http://localhost:${port}`);
 });
 
 // module.exports = app;
