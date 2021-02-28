@@ -167,38 +167,26 @@
       return div;
     };
 
-    const getFreeSlots = async () => {
+    const buildTableWithSlots = (services) => {
       const service = document.querySelector('select').value;
       const table = document.querySelector('.table');
+      const tbody = document.querySelector('tbody');
 
-      table.innerHTML = '';
+      tbody.innerHTML = '';
       table.appendChild(createLoader('Looking for available appointments...'));
       
-      const freeSlots = await fetch('http://localhost:3000/getFreeSlots', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          service,
-        }),
-      })
-      .then(response => response.json())
-      .then(freeSlots => freeSlots)
-      .catch(error => console.error(error));
-
-      console.log('freeSlots', freeSlots);
-
-      if (typeof freeSlots !== 'object') {
-        table.innerHTML = freeSlots;
-        return;
-      }
-      
-      console.log("create table");
-      const tbody = document.createElement('tbody')
-      freeSlots.forEach(slot => {
-        console.log(slot);
+      services.forEach((service) => {
+        if (!service.availability.length) return;
+        else service.availability.forEach(slot => {
+          // Table Row
         const tr = tbody.appendChild(document.createElement('tr'));
+          // Service
+          const tdService = document.createElement('td');
+          tdService.innerHTML = service.name;
+          // Date
         const tdDate = document.createElement('td');
         tdDate.innerHTML = formatDate(slot.date);
+          // Link
         const tdLink = document.createElement('td');
         const btn = document.createElement('a');
         btn.className = 'button is-secondary is-fullwidth';
@@ -206,8 +194,10 @@
         btn.innerHTML = 'Book';
         tdLink.appendChild(btn);
         
+          tr.appendChild(tdService);
         tr.appendChild(tdDate);
         tr.appendChild(tdLink);
+      });
       });
       document.querySelector('.loader-container').remove();
       table.appendChild(tbody);
