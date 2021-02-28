@@ -199,9 +199,19 @@
         tr.appendChild(tdLink);
       });
       });
+
       document.querySelector('.loader-container').remove();
       table.appendChild(tbody);
     };
+
+    (async () => {
+      const services = await getFreeSlots();
+      buildSelectWithServices(services);
+      buildTableWithSlots(services);
+      console.log(services);
+
+      servicesSelect.addEventListener('change', () => filterByService(services));
+    })();
 
     const sendForm = (event) => {
       event.preventDefault();
