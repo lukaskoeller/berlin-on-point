@@ -24,8 +24,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
 app.get('/services', (req, res) => {
-    console.log('Send all services');
-    res.json(services);
+  console.log('Send all services', services);
+  res.json(services);
 });
 
 app.post('/getFreeSlots', async (req, res) => {
