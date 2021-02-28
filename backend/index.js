@@ -2,7 +2,18 @@ import cors from 'cors';
 import multer from 'multer';
 import services from './services/index.js';
 import express from 'express';
-import { getFreeSlots } from './scraper/index.js';
+import fs from 'fs';
+import { getAllFreeSlots } from './scraper/index.js';
+
+const scheduler = async () => {
+  const allSlots = await getAllFreeSlots();
+  const stream = fs.createWriteStream('berlin-free-slots.json')
+  stream.write(JSON.stringify(allSlots));
+  console.log(allSlots);
+  // setTimeout(() => scheduler(), 20000);
+};
+
+scheduler();
 
 const app = express();
 const port = 3000;
