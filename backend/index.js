@@ -28,12 +28,11 @@ app.get('/services', (req, res) => {
   res.json(services);
 });
 
-app.post('/getFreeSlots', async (req, res) => {
-    console.log("req.body:service", req.body);
-    const { service } = req.body;
-    const freeSlots = await getFreeSlots(service);
-    console.log("freeSlots", freeSlots);
-    res.json(freeSlots);
+app.get('/getFreeSlots', (_req, res) => {
+  fs.readFile('berlin-free-slots.json', 'utf8', (err, data) => {
+    if (err) throw err;
+    res.send(JSON.parse(data));
+  });
 });
 
 app.post('/subscribe', upload.none(), (req, res) => {
