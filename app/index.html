@@ -116,8 +116,9 @@
     </section>
   </form>
   <script>
-    (async () => {
-      const services = await fetch('http://localhost:3000/services', { mode: 'cors' })
+    // GLOBAL SELECTORS
+    const servicesSelect = document.querySelector('.services-select');
+
         .then(response => response.json())
         .then(data => Object.values(data))
         .catch(error => console.error(error));
