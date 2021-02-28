@@ -14,6 +14,7 @@ export const getFreeSlots = async (service) => {
   let availability = []; // All available dates with booking links for a given service.
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
+  await page.setDefaultNavigationTimeout(0); 
 
   /**
    * @returns {object} the available date as ISO String and the accoding link to book it.
