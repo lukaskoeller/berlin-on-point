@@ -121,9 +121,9 @@
 
     // GET FREE SLOTS
     const getFreeSlots = () => fetch('http://localhost:3000/getFreeSlots')
-        .then(response => response.json())
+      .then(response => response.json())
       .then(freeSlots => freeSlots)
-        .catch(error => console.error(error));
+      .catch(error => console.error(error));
 
     const buildSelectWithServices = async (services) => {
       services.forEach(service => {
@@ -174,30 +174,30 @@
 
       tbody.innerHTML = '';
       table.appendChild(createLoader('Looking for available appointments...'));
-      
+
       services.forEach((service) => {
         if (!service.availability.length) return;
         else service.availability.forEach(slot => {
           // Table Row
-        const tr = tbody.appendChild(document.createElement('tr'));
+          const tr = tbody.appendChild(document.createElement('tr'));
           // Service
           const tdService = document.createElement('td');
           tdService.innerHTML = service.name;
           // Date
-        const tdDate = document.createElement('td');
-        tdDate.innerHTML = formatDate(slot.date);
+          const tdDate = document.createElement('td');
+          tdDate.innerHTML = formatDate(slot.date);
           // Link
-        const tdLink = document.createElement('td');
-        const btn = document.createElement('a');
-        btn.className = 'button is-secondary is-fullwidth';
-        btn.href = slot.link;
-        btn.innerHTML = 'Book';
-        tdLink.appendChild(btn);
-        
+          const tdLink = document.createElement('td');
+          const btn = document.createElement('a');
+          btn.className = 'button is-secondary is-fullwidth';
+          btn.href = slot.link;
+          btn.innerHTML = 'Book';
+          tdLink.appendChild(btn);
+
           tr.appendChild(tdService);
-        tr.appendChild(tdDate);
-        tr.appendChild(tdLink);
-      });
+          tr.appendChild(tdDate);
+          tr.appendChild(tdLink);
+        });
       });
 
       document.querySelector('.loader-container').remove();
