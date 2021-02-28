@@ -37,7 +37,7 @@ export const getFreeSlots = async (service) => {
   };
 
   // Go to Service Page
-  await page.goto(`${baseURL}/${servicePath}/${service}`);
+  await page.goto(`${baseURL}/${servicePath}/${service.no}`);
   await page.waitForSelector('.zmstermin-multi.inner');
   // await page.screenshot({ path: 'screenshot.png' });
 
@@ -67,9 +67,23 @@ export const getFreeSlots = async (service) => {
     await page.waitForSelector('.calendar-table');
     // eslint-disable-next-line no-console
   }
-
   await browser.close();
-  return availability.length
-  ? availability
-  : 'No available appointments at the moment';
+
+  return {
+    serviceNo: service.no,
+    name: service.name,
+    availability,
+  }
+};
+
+/**
+ * Fetches all free slots of all available services.
+ * @returns {object} array of free slots of all services
+ */
+export const getAllFreeSlots = async () => {
+  const allSlots = await Promise.all(
+    services.map((service) => getFreeSlots(service))
+  );
+
+  return allSlots;
 };
