@@ -1,0 +1,17 @@
+{
+  "editor.tabSize": 2, // indent_size for editorconfig
+  "editor.renderWhitespace": "all", // ? for editor config
+  "editor.wordWrapColumn": 100, // max_line_length for editorconfig
+  "editor.wordWrap": "wordWrapColumn", // ? for editorconfig
+  "editor.insertSpaces": true, // ? for editorconfig
+  "editor.rulers": [ // ? for editorconfig
+    50,
+    100,
+  ],
+  "editor.formatOnSave": true, // ? for editorconfig
+  "files.insertFinalNewline": true, // insert_final_newline for editorconfig
+  "files.trimFinalNewlines": true, // ? for editorconfig
+  "files.trimTrailingWhitespace": true, // trim_trailing_whitespace for editorconfig
+  "files.eol": "\n", // editorconfig end_of_line
+  "eslint.format.enable": true
+}
