@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 import puppeteer from 'puppeteer';
+import services from '../services/index.js';
 
 const baseURL = 'https://service.berlin.de';
 const servicePath = 'dienstleistung';
