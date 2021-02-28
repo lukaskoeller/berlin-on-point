@@ -125,15 +125,15 @@
       .then(freeSlots => freeSlots)
         .catch(error => console.error(error));
 
-      const servicesSelect = document.querySelector('.services-select');
+    const buildSelectWithServices = async (services) => {
       services.forEach(service => {
         const option = document.createElement('option');
         option.text = service.name;
-        option.value = service.no;
+        option.value = service.serviceNo;
 
         servicesSelect.appendChild(option);
       });
-    })();
+    };
 
     const formatDate = (ISOString) => {
       const date = new Date(ISOString);
