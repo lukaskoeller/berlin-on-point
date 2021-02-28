@@ -135,6 +135,16 @@
       });
     };
 
+    const filterByService = (services) => {
+      const selectedService = servicesSelect.value;
+      if (selectedService === 'all') {
+        buildTableWithSlots(services);
+        return
+      };
+      const filteredServices = services.filter((service) => service.serviceNo === selectedService);
+      buildTableWithSlots(filteredServices);
+    };
+
     const formatDate = (ISOString) => {
       const date = new Date(ISOString);
       const year = date.getFullYear();
