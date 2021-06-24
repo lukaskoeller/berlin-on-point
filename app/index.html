@@ -145,15 +145,6 @@
       buildTableWithSlots(filteredServices);
     };
 
-    const formatDate = (ISOString) => {
-      const date = new Date(ISOString);
-      const year = date.getFullYear();
-      const month = date.getMonth();
-      const day = date.getDate();
-
-      return `${day}.${month}.${year}`;
-    };
-
     const createLoader = (msg) => {
       const div = document.createElement('div');
       div.className = 'loader-container';
@@ -185,7 +176,7 @@
           tdService.innerHTML = service.name;
           // Date
           const tdDate = document.createElement('td');
-          tdDate.innerHTML = formatDate(slot.date);
+          tdDate.innerHTML = new Date(slot.date).toLocaleDateString('de-DE');
           // Link
           const tdLink = document.createElement('td');
           const btn = document.createElement('a');
