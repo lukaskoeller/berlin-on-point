@@ -2,6 +2,7 @@
 # berlin-on-point
 Be notified about available appointments at Berlins authorities.
 
+> Be aware that this repository is not actively maintained!
 
 Choose from services like:
 1. Personalausweis beantragen
